@@ -1,0 +1,430 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation (Event reserv service test)",
+        "description": "This is the way.",
+        "contact": {
+            "name": "Stanislav Boyko",
+            "email": "mzcoding@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/",
+            "description": "Dev server"
+        },
+        {
+            "url": " http://localhost:8000/",
+            "description": "Stage server"
+        },
+        {
+            "url": "",
+            "description": "Production server"
+        }
+    ],
+    "paths": {
+        "/events/{id}/reserve": {
+            "post": {
+                "tags": [
+                    "Places"
+                ],
+                "summary": "Reserve place ",
+                "description": "Reserve place",
+                "operationId": "80cda9d3ddd1c9804056cbd422e20d13",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        },
+                        "examples": {
+                            "int": {
+                                "summary": "An int value.",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success result",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Body200"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/events/{id}/places": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "List all places by event id",
+                "description": "Get all places",
+                "operationId": "77081e7a94ae918c5396a8dae756af82",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        },
+                        "examples": {
+                            "int": {
+                                "summary": "An int value.",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success result",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Body200"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/shows": {
+            "get": {
+                "tags": [
+                    "Shows"
+                ],
+                "summary": "List all shows ",
+                "description": "Get all shows",
+                "operationId": "71eed29e2345d19e91e4afdaeebef98b",
+                "responses": {
+                    "200": {
+                        "description": "Success result",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Body200"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/shows/{id}/events": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "List events by show id",
+                "description": "Get all events",
+                "operationId": "e3eb1830376185e633e1ba5be4c68ba4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Show id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        },
+                        "examples": {
+                            "int": {
+                                "summary": "An int value.",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success result",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/Body200"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Body200": {
+                "properties": {
+                    "message": {
+                        "description": "Status Description",
+                        "type": "string",
+                        "example": "Request completed successfully"
+                    }
+                },
+                "type": "object"
+            },
+            "Pagination": {
+                "properties": {
+                    "links": {
+                        "description": "Pagination links",
+                        "properties": {
+                            "first": {
+                                "example": "https://current.resource?page=1"
+                            },
+                            "last": {
+                                "example": "https://current.resource?page=8"
+                            },
+                            "prev": {
+                                "example": "null"
+                            },
+                            "next": {
+                                "example": "https://current.resource?page=2"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "meta": {
+                        "description": "Pagination meta data",
+                        "properties": {
+                            "currentPage": {
+                                "example": "1"
+                            },
+                            "from": {
+                                "example": "1"
+                            },
+                            "lastPage": {
+                                "example": "8"
+                            },
+                            "next": {
+                                "example": "Ingo"
+                            },
+                            "links": {
+                                "description": "Pagination links",
+                                "properties": {
+                                    "": {
+                                        "description": "Pagination links",
+                                        "type": "array",
+                                        "items": {}
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "path": {
+                                "example": "https://current.resource"
+                            },
+                            "perPage": {
+                                "example": "10"
+                            },
+                            "to": {
+                                "example": "10"
+                            },
+                            "total": {
+                                "example": "77"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "Request completed successfully",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Body200"
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Input data error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "success",
+                                "message"
+                            ],
+                            "properties": {
+                                "success": {
+                                    "description": "Successful request",
+                                    "type": "boolean",
+                                    "example": "false"
+                                },
+                                "message": {
+                                    "description": "Status Description",
+                                    "type": "string",
+                                    "example": "Input parameters are not as expected"
+                                },
+                                "errors": {
+                                    "description": "List errors",
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "key": {
+                                                "description": "Key",
+                                                "type": "string",
+                                                "example": "field"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "example": {
+                                        "field": "Field field must be a number"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "403": {
+                "description": "Access error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "success",
+                                "message"
+                            ],
+                            "properties": {
+                                "success": {
+                                    "description": "Successful request",
+                                    "type": "boolean",
+                                    "example": "false"
+                                },
+                                "message": {
+                                    "description": "Status Description",
+                                    "type": "string",
+                                    "example": "Access error!"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "404": {
+                "description": "Method not found",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "success",
+                                "message"
+                            ],
+                            "properties": {
+                                "success": {
+                                    "description": "Successful request",
+                                    "type": "boolean",
+                                    "example": "false"
+                                },
+                                "message": {
+                                    "description": "Status Description",
+                                    "type": "string",
+                                    "example": "The called method was not found"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Server error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "success",
+                                "message"
+                            ],
+                            "properties": {
+                                "success": {
+                                    "description": "Successful request",
+                                    "type": "boolean",
+                                    "example": "false"
+                                },
+                                "message": {
+                                    "description": "Status Description",
+                                    "type": "string",
+                                    "example": "An internal error has occurred! Please contact your administrator."
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "requestBodies": {
+            "BookEventRequest": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "name",
+                                "places"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "description": "user name",
+                                    "type": "string",
+                                    "example": "Ivan"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Places",
+            "description": "Places"
+        },
+        {
+            "name": "Events",
+            "description": "Events"
+        },
+        {
+            "name": "Shows",
+            "description": "Shows"
+        }
+    ]
+}
